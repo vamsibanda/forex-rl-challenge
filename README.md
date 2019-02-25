@@ -1,5 +1,5 @@
 # FX Reinforcement Learning Playground
-Beat me in my own game! Develop your RL agent with provided FX features.
+Beat me in my own game! Develop your RL agent with provided FX features & returns.
 
 # Test results that I have obtained myself:
 Max. Drawdown: 2.56% 
