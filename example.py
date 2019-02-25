@@ -66,8 +66,8 @@ def train(model, optimizer, index):
 
 if __name__ == '__main__':
     model = nn.Linear(512 + No_Channels, No_Channels, bias = False).cuda().share_memory()
-    model.weight.data.fill_(0)
     '''
+    model.weight.data.fill_(0)
     weights = torch.from_numpy(weights)[:11, :]
     model.weight.data[:11,:512] = weights.data
     '''
