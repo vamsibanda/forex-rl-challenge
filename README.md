@@ -23,5 +23,7 @@ Stability: 96.35%
 Tail Ratio: 2.99x 
 Value at Risk: -0.52%
 
+# Annual Cumulative Return
 ![](annual_return.png)
+# Weekly Portfolio Log Return
 ![](weekly_return.png)
