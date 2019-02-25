@@ -9,6 +9,8 @@ Returns of each asset during training and test periods are in y_train and y_test
 
 example.py contains an implementation that hourly balances a long-short portfolio.
 
+Up to 2x leverage is allowed. Your objective is to outperform below risk metrics.
+
 # Test results that I have obtained myself:
 Max. Drawdown: 2.56% 
 Sortino Ratio: 13.65x
