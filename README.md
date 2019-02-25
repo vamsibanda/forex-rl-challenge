@@ -2,7 +2,7 @@
 Beat me in my own game! Develop your RL agent with provided FX features.
 
 # Test results that I have obtained myself:
-Maximum Drawdown: 2.56% 
+Max. Drawdown: 2.56% 
 Sortino Ratio: 13.65x
 
 Sharpe Ratio: 3.99x 
