@@ -11,7 +11,7 @@ example.py contains an implementation that hourly balances a long-short portfoli
 
 Up to 2x leverage is allowed. Your objective is to outperform following risk metrics.
 
-Why use my features (environment summary)? because they're performing well! 
+Why use my features as environment summary? because they're performing well! 
 
 # Test results that I have obtained myself:
 Max. Drawdown: 2.56% 
