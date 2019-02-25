@@ -24,7 +24,7 @@ train_loader = torch.utils.data.DataLoader(train_dataset,
 test_loader = torch.utils.data.DataLoader(test_dataset, 
     batch_size = 1, shuffle = False, pin_memory = True)
 No_Channels = 12
-No_Proccess = 21
+No_Proccess = 8
 comm = 1e-4
 
 def calculate_reward(model, loader, index, skip = None):
