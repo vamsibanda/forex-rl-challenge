@@ -73,6 +73,12 @@ def plot_function(epoch_weights):
     ax.text(0.5, 1.0, ttt, horizontalalignment='center', verticalalignment='top', transform=ax.transAxes)
     plt.savefig('portfolio_weights')
     plt.close()
+    tr = np.diff(ew.T, axis=1)
+    plt.figure(figsize=(96, 12))
+    ax = sns.heatmap(tr, cmap=cmap, center=0, robust=True, yticklabels=False, xticklabels=False)
+    ax.text(0.5, 1.0, ttt, horizontalalignment='center', verticalalignment='top', transform=ax.transAxes)
+    plt.savefig('transactions')
+    plt.close()
 
 def calculate_reward(model, loader, index, skip = None):
     epoch_weights = []
