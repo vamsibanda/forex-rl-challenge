@@ -112,7 +112,7 @@ def calculate_reward(model, loader, index, skip = None):
         # Calculate the transaction cost due to portfolio change
         reward = (weights - last_action).abs().sum() * cost
         # Calculate portfolio return relative to the market itself
-        reward -= (weights * rewards).sum() - rewards.abs().mean()
+        reward -= (weights * rewards).sum() #- rewards.abs().mean()
         # Future-work: risk-sensitive rl using exponential utility
         total_reward = total_reward + reward
         # Save the current action to employ it for the next step
