@@ -13,7 +13,7 @@ import os, time, pdb, random
 import _pickle as cPickle
 import torch.multiprocessing as _mp
 mp = _mp.get_context('spawn')
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
+os.environ["CUDA_VISIBLE_DEVICES"]="1"
 #with open('weights.pkl', 'rb') as f: weights = cPickle.load(f)
 with open('y_train.pkl', 'rb') as f: y_train = cPickle.load(f)
 with open('y_test.pkl', 'rb') as f: y_test = cPickle.load(f)
@@ -27,17 +27,17 @@ train_loader = torch.utils.data.DataLoader(train_dataset,
     batch_size = 1, shuffle = False, pin_memory = True)
 test_loader = torch.utils.data.DataLoader(test_dataset, 
     batch_size = 1, shuffle = False, pin_memory = True)
-No_Channels = 12
-No_Proccess = 16
+No_Features = 512
+No_Channels = 11
+No_Proccess = 20
 cost = 1e-4
 
 def calculate_reward(model, loader, index, skip = None):
     epoch_weights = []
-    epoch_levergs =[]
     #pb = tq(loader, position = index)
     dd = None
     last_action = torch.ones(No_Channels).cuda(dd)
-    last_action[:-1] /= float(No_Channels-1)
+    last_action /= float(No_Channels)
     total_reward = 0.0
     for i, (features, rewards) in enumerate(loader):
         if skip is not None and skip[i]: continue
@@ -47,15 +47,13 @@ def calculate_reward(model, loader, index, skip = None):
         action = model(state)
         weights = torch.tanh(action[:-1])
         certain = 0.5 + torch.sigmoid(action[-1]) / 2.0
-        weights = weights / weights.abs().sum()
-        reward = (weights - last_action[:-1]).abs().sum() * cost
+        weights = weights / (weights.abs().sum() * certain)
+        reward = (weights - last_action).abs().sum() * cost
         reward -= (weights * rewards).sum() #- rewards.mean()
         # try risk-sensitive rl e.g. exponential utility
-        total_reward = total_reward + (reward / certain)
-        last_action[:-1] = weights
-        last_action[-1] = certain
+        total_reward = total_reward + reward
+        last_action = weights
         epoch_weights.append(weights.detach().cpu().numpy())
-        epoch_levergs.append(certain.detach().cpu().numpy())
         torch.cuda.empty_cache()
     #pb.set_postfix({'R': '{:.6f}'.format(total_reward)})
     skipped = 0 if skip is None else sum(skip)
@@ -63,8 +61,7 @@ def calculate_reward(model, loader, index, skip = None):
     if skip is None: 
         print('TEST %f' % -total_reward.item())
         '''
-        lv = np.concatenate(epoch_levergs, axis=0)
-        ew = np.divide(np.concatenate(epoch_weights, axis=0), lv)
+        ew = np.concatenate(epoch_weights, axis=0)
         comm = np.sum(np.abs(ew[1:] - ew[:-1]), axis=1)
         ret = np.sum(np.multiply(ew, y_test.numpy()), axis=1)[1:]
         ret = pd.DataFrame(ret - comm * cost)
@@ -90,11 +87,11 @@ def train(model, optimizer, index):
     torch.cuda.empty_cache()
 
 if __name__ == '__main__':
-    model = nn.Linear(512 + No_Channels, No_Channels, bias = False).cuda().share_memory()
+    model = nn.Linear(No_Features + No_Channels, No_Channels+1, bias = False).cuda().share_memory()
     '''
     model.weight.data.fill_(0)
-    weights = torch.from_numpy(weights)[:11, :]
-    model.weight.data[:11,:512] = weights.data
+    weights = torch.from_numpy(weights)[:No_Channels, :]
+    model.weight.data[:No_Channels,:No_Features] = weights.data
     '''
     optimizer = optim.Adam(params = model.parameters(), lr = 1e-4)
     torch.backends.cudnn.benchmark = True
