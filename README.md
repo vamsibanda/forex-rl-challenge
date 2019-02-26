@@ -32,5 +32,4 @@ Value at Risk: -0.52%
 
 
 # Bonus
-
 Multi-processed training of a shared model where batches are divided across processes.
