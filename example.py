@@ -97,7 +97,7 @@ def calculate_reward(model, loader, index, skip = None):
         certain = 0.5 + torch.sigmoid(action[-1]) / 2.0
         weights = weights / (weights.abs().sum() * certain)
         reward = (weights - last_action).abs().sum() * cost
-        reward -= (weights * rewards).sum() #- rewards.mean()
+        reward -= (weights * rewards).sum() #- rewards.abs().mean()
         # try risk-sensitive rl e.g. exponential utility
         total_reward = total_reward + reward
         last_action = weights
