@@ -138,6 +138,7 @@ def train(model, optimizer, index):
     # Perform an optimizer on the shared model with calculated loss
     optimizer.zero_grad()
     train_reward.backward()
+    #nn.utils.clip_grad_norm_(model.parameters(), max_grad)
     optimizer.step()
     torch.cuda.empty_cache()
 
