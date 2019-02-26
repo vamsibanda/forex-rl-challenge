@@ -11,6 +11,8 @@ example.py contains an implementation that hourly balances a long-short portfoli
 
 Up to 2x leverage is allowed. Your objective is to outperform following risk metrics.
 
+I will list results from challengers here by sorting them according to Sortino ratio. 
+
 Why use my features as environment summary? because they're performing well! 
 
 # Test results that I have obtained myself:
