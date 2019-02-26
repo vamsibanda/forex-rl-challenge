@@ -150,6 +150,7 @@ if __name__ == '__main__':
     weights = torch.from_numpy(weights)[:No_Channels, :]
     model.weight.data[:No_Channels,:No_Features] = weights.data
     '''
+    best_reward = 0.0
     # Define the optimizer that will be utilized by all processes
     optimizer = optim.Adam(params = model.parameters(), lr = 1e-4)
     for epoch in range(epochs):
@@ -163,4 +164,7 @@ if __name__ == '__main__':
         for p in processes: p.join()
         # After all of processes are done, evaluate model on test set
         model.eval()
-        calculate_reward(model, test_loader, No_Proccess+1)
+        reward = calculate_reward(model, test_loader, No_Proccess+1)
+        if reward < best_reward:
+            best_reward = reward
+            torch.save(model.state_dict(), 'best_model.pt')
