@@ -29,3 +29,8 @@ Value at Risk: -0.52%
 ![](annual_return.png)
 # Weekly Portfolio Log Return
 ![](weekly_return.png)
+
+
+# Bonus
+
+Multi-processed training of a shared model where batches are divided across processes.
