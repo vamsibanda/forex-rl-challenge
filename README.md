@@ -14,7 +14,8 @@ Up to 2x leverage is allowed. Your objective is to outperform following risk met
 
 Please send me your saved model so that I can test it on a blind set for the contest.
 
-I will list results from challengers here by sorting them according to Sortino ratio. 
+I will list results from challengers here by sorting them w.r.t. industry-standard,
+risk measures including Calmar, Sortino and Omega ratio(s).
 
 Why use my features as environment summary? because they're performing well! 
 
