@@ -47,7 +47,7 @@ Your objective results here can also attract business opportunities such as job 
 
 # Sponsorships and Hackhathons
 
-Please, contact me if you would like to sponsor the FX RL challenge or organize a local
+Please, contact me if you would like to sponsor the FX RL challenge; or organize a local
 
 meetup, workshop or Hackathon where RL researchers can participate into this challenge. 
 
