@@ -36,6 +36,11 @@ Value at Risk: -0.52%
 ![](weekly_return.png)
 
 
+# How you can get rich out of this?
+If you obtain successful results and you want to use your AI for live-trading,
+
+you can contact me for licensing to a real-time feed of the environment summary.
+
 # Bonus
 PyTorch implementation of Multi-processed training of a shared model where batches
 
