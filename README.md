@@ -1,5 +1,4 @@
 # FX Reinforcement Learning Playground
-Beat me in my own game! Develop your RL agent with provided FX environment.
 
 This repository contains an open challenge for a Portfolio Balancing AI in Forex.
 
