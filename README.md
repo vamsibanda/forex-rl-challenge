@@ -49,7 +49,7 @@ Are you an academician? Use FX RL challenge to experiment with it in your public
 
 You won't need to worry about the right feature extraction, as I already did that for you.
 
-Fixed input to challengers will allow a clear benchmarking of RL methods developed.
+Fixed input for challengers will allow a clear benchmarking of RL methods developed.
 
 Below is a survey paper about reinforcement learning applications in financial markets.
 
