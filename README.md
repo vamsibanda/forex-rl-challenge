@@ -41,7 +41,7 @@ If you obtain successful results and you want to use your RL model for live-trad
 
 you can contact me for subscribing to a real-time feed of the environment summary.
 
-Your objecive results here can also attract business opportunities including job offers.
+Your objective results here can also attract business opportunities incl. job offers.
 
 # Bonus
 PyTorch implementation of Multi-processed training of a shared model where batches
