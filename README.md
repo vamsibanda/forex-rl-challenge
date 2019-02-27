@@ -11,7 +11,7 @@ example.py contains an implementation that hourly balances a long-short portfoli
 
 Up to 2x leverage is allowed. Your objective is to outperform following risk metrics.
 
-Please, send me your saved model so that I can test it on a blind set for the challenge.
+Please send me your saved model so that I can test it on a blind set for the contest.
 
 I will list results from challengers here by sorting them according to Sortino ratio. 
 
