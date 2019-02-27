@@ -41,13 +41,13 @@ If you obtain successful results and you want to use your RL model for live-trad
 
 you can contact me for subscribing to a real-time feed of the environment summary.
 
-Fixed input to challengers will allow a clear benchmarking of RL methods developed.
-
 Your objective results here can also attract business opportunities such as job offers.
 
 
 # If you are interested in academics:
 Are you an academician? Use FX RL challenge to experiment with it in your publication.
+
+Fixed input to challengers will allow a clear benchmarking of RL methods developed.
 
 Below is a survey paper about reinforcement learning applications in financial markets.
 
