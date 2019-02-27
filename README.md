@@ -37,4 +37,5 @@ Value at Risk: -0.52%
 
 
 # Bonus
-Multi-processed training of a shared model where batches are divided across processes.
+PyTorch implementation of Multi-processed training of a shared model where batches
+are divided across processes. Looking for a person to contribute TensorFlow version.
