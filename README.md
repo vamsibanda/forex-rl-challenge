@@ -9,6 +9,7 @@ Returns of each asset during training and test periods are in y_train and y_test
 
 example.py contains an implementation that hourly balances a long-short portfolio.
 
+# Participation into Forex RL Challenge
 Up to 2x leverage is allowed. Your objective is to outperform following risk metrics.
 
 Please send me your saved model so that I can test it on a blind set for the contest.
