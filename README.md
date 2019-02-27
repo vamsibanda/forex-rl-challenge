@@ -45,6 +45,12 @@ Fixed input to challengers will allow a clear benchmarking of RL methods develop
 
 Your objective results here can also attract business opportunities such as job offers.
 
+# Sponsorships and Hackhathons
+
+Please, contact me if you would like to sponsor the FX RL challenge or organize a local
+
+meetup, workshop or Hackathon where RL researchers can participate into this challenge. 
+
 # Bonus
 PyTorch implementation of Multi-processed training of a shared model where batches
 
