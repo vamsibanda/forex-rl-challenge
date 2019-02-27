@@ -37,7 +37,7 @@ Value at Risk: -0.52%
 
 
 # How you can get rich out of this?
-If you obtain successful results and you want to use your AI for live-trading,
+If you obtain successful results and you want to employ your AI for live-trading,
 
 you can contact me for licensing to a real-time feed of the environment summary.
 
