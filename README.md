@@ -61,7 +61,7 @@ Please, contact me if you would like to sponsor the FX RL challenge; or organize
 
 meetup, workshop or Hackathon where RL practitioners can participate to this challenge. 
 
-# Bonus Example Implementation
+# Bonus: Example Implementation
 PyTorch implementation of Multi-processed training of a shared model where batches
 
 are divided across processes. Looking for a person to contribute a TensorFlow version.
