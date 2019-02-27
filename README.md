@@ -7,7 +7,7 @@ The state of the FX market is represented via 512 features in X_train and X_test
 
 Returns of each asset during training and test periods are in y_train and y_test.
 
-example.py contains an implementation that balances a long-short portfolio.
+**example.py** contains an implementation that balances a long-short portfolio.
 
 # Participation into Forex RL Challenge
 Up to 2x leverage is allowed. Your objective is to outperform following risk metrics.
