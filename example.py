@@ -23,7 +23,7 @@ torch.manual_seed(0)
 torch.cuda.manual_seed(0)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = True
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 # Import pickled data required for the training and testing
 #with open('weights.pkl', 'rb') as f: weights = cPickle.load(f)
