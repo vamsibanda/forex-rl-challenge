@@ -17,9 +17,9 @@ I will list results from challengers here by sorting them w.r.t. the industry-st
 
 risk measures including (but not limited to) the Calmar, Sortino, Omega ratio(s), etc.
 
+# Test results that I have obtained myself:
 Why use my features as environment summary? because they're performing well! 
 
-# Test results that I have obtained myself:
 Max. Drawdown: 2.56% 
 Sortino Ratio: 13.65x
 
