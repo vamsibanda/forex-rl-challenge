@@ -47,6 +47,8 @@ Your objective results here can also attract business opportunities such as job 
 # If you are interested in academics:
 Are you an academician? Use FX RL challenge to experiment with it in your publication.
 
+You won't need to worry about the feature extraction, as I already did that for you.
+
 Fixed input to challengers will allow a clear benchmarking of RL methods developed.
 
 Below is a survey paper about reinforcement learning applications in financial markets.
