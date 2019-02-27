@@ -43,6 +43,7 @@ test_loader = torch.utils.data.DataLoader(test_dataset,
 # Constants defining the neural network and multiprocessing
 No_Features = 512
 No_Channels = 11
+# No. processes, reduce this if it doesnt fit to your GPU!!!
 No_Proccess = 20
 epochs = 100
 # Transaction cost that is utilized for commission expenses
