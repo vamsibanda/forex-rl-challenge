@@ -16,7 +16,7 @@ Please send me your saved model so that I can test it on a blind set for the con
 
 I will list results from challengers here by sorting them w.r.t. industry-standard,
 
-risk measures including Calmar, Sortino and Omega ratio(s).
+risk measures including (but not limited to) Calmar, Sortino and Omega ratio(s).
 
 Why use my features as environment summary? because they're performing well! 
 
