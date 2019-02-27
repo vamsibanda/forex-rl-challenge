@@ -47,7 +47,7 @@ Your objective results here can also attract business opportunities such as job 
 # If you are interested in academics:
 Are you an academician? Use FX RL challenge to experiment with it in your publication.
 
-You won't need to worry about the feature extraction, as I already did that for you.
+You won't need to worry about the right feature extraction, as I already did that for you.
 
 Fixed input to challengers will allow a clear benchmarking of RL methods developed.
 
