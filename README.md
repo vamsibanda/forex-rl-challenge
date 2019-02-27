@@ -39,7 +39,7 @@ Value at Risk: -0.52%
 # How you can get rich out of this?
 If you obtain successful results and you want to employ your RL model for live-trading,
 
-you can contact me for licensing to a real-time feed of the environment summary.
+you can contact me for subscribing to a real-time feed of the environment summary.
 
 # Bonus
 PyTorch implementation of Multi-processed training of a shared model where batches
