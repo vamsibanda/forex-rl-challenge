@@ -41,6 +41,8 @@ If you obtain successful results and you want to use your RL model for live-trad
 
 you can contact me for subscribing to a real-time feed of the environment summary.
 
+Fixed input to challengers will allow a clear benchmarking of RL methods developed.
+
 Your objective results here can also attract business opportunities such as job offers.
 
 # Bonus
