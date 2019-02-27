@@ -44,4 +44,4 @@ you can contact me for subscribing to a real-time feed of the environment summar
 # Bonus
 PyTorch implementation of Multi-processed training of a shared model where batches
 
-are divided across processes. Looking for a person to contribute a TensorFlow port.
+are divided across processes. Looking for a person to contribute a TensorFlow version.
