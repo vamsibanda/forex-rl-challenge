@@ -49,7 +49,7 @@ Your objective results here can also attract business opportunities such as job 
 
 Please, contact me if you would like to sponsor the FX RL challenge; or organize a local
 
-meetup, workshop or Hackathon where RL researchers can participate into this challenge. 
+meetup, workshop or Hackathon where RL researchers can participate to this challenge. 
 
 # Bonus
 PyTorch implementation of Multi-processed training of a shared model where batches
