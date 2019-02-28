@@ -15,7 +15,7 @@ Up to 2x leverage is allowed. Your objective is to outperform following risk met
 
 Please send me your saved model so that I can test it on a blind set for the contest.
 
-I will list results from challengers here by sorting them w.r.t. the industry-standard
+I will list results from challengers here by sorting them using the industry-standard
 
 risk measures including (but not limited to) the Calmar, Sortino, Omega ratio(s), etc.
 
