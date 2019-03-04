@@ -14,7 +14,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets
-import os, time, pdb, random
+import os, time, pdb, math, random
 import _pickle as cPickle
 import torch.multiprocessing as _mp
 mp = _mp.get_context('spawn')
@@ -22,11 +22,11 @@ mp = _mp.get_context('spawn')
 torch.manual_seed(0)
 torch.cuda.manual_seed(0)
 torch.backends.cudnn.deterministic = True
-torch.backends.cudnn.benchmark = True
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
+torch.backends.cudnn.benchmark = False
+os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 # Import pickled data required for the training and testing
-#with open('weights.pkl', 'rb') as f: weights = cPickle.load(f)
+with open('weights.pkl', 'rb') as f: weights = cPickle.load(f)
 with open('y_train.pkl', 'rb') as f: y_train = cPickle.load(f)
 with open('y_test.pkl', 'rb') as f: y_test = cPickle.load(f)
 y_train = torch.from_numpy(y_train)
@@ -44,7 +44,7 @@ test_loader = torch.utils.data.DataLoader(test_dataset,
 No_Features = 512
 No_Channels = 11
 # No. processes, reduce this if it doesnt fit to your GPU!!!
-No_Proccess = 20
+No_Proccess = 8
 epochs = 100
 # Transaction cost that is utilized for commission expenses
 cost = 1e-4
@@ -89,13 +89,17 @@ def plot_function(epoch_weights):
 
 # Go through assigned batches for each process to calculate
 # the reward that occurs from agent's portfolio decisions
-def calculate_reward(model, loader, index, skip = None):
+def calculate_reward(model, loader, index, risk = True, skip = None):
     epoch_weights = []
     #pb = tq(loader, position = index)
     dd = None
     last_action = torch.ones(No_Channels).cuda(dd)
     last_action /= float(No_Channels)
     total_reward = 0.0
+
+    pos_reward = 0.0
+    pos_count = 0
+
     for i, (features, rewards) in enumerate(loader):
         if skip is not None and skip[i]: continue
         features = features.view(-1).cuda(dd, non_blocking=True)
@@ -114,8 +118,13 @@ def calculate_reward(model, loader, index, skip = None):
         reward = (weights - last_action).abs().sum() * cost
         # Calculate portfolio return relative to the market itself
         reward -= (weights * rewards).sum() #- rewards.abs().mean()
+        # Calculate portfolio return relative to the last weights
+        reward += (last_action * rewards).sum()
         # Future-work: risk-sensitive rl using exponential utility
-        total_reward = total_reward + reward
+        total_reward = total_reward + (reward.abs() if risk else reward)
+        if reward > 0:
+            pos_reward = pos_reward + reward
+            pos_count += 1
         # Save the current action to employ it for the next step
         last_action = weights
         # Save the action history to measure and plot afterwards
@@ -125,16 +134,16 @@ def calculate_reward(model, loader, index, skip = None):
     # Calculate the average reward for the non-skipped batches
     skipped = 0 if skip is None else sum(skip)
     total_reward = total_reward / (len(loader) - skipped)
-    if skip is None: 
-        print('TEST %f' % -total_reward.item())
-        plot_function(epoch_weights)
-    return total_reward
+    pos_reward = pos_reward / pos_count
+    if skip is None: plot_function(epoch_weights)
+    return total_reward, pos_reward
 
-def train(model, optimizer, index):
+def train(model, optimizer, index, risk = True):
     # Mark the batches that are going to be skipped in this process
     skip = [(i // (len(train_loader)//No_Proccess)) != index for i in range(len(train_loader))]
     # Calculate the average reward for the batches of this process
-    train_reward = calculate_reward(model, train_loader, index, skip)
+    total_reward, pos_reward = calculate_reward(model, train_loader, index, risk, skip)
+    train_reward = pos_reward / total_reward if risk else total_reward
     #print('train %f' % -train_reward.item())
     # Perform an optimizer on the shared model with calculated loss
     optimizer.zero_grad()
@@ -151,9 +160,8 @@ if __name__ == '__main__':
     weights = torch.from_numpy(weights)[:No_Channels, :]
     model.weight.data[:No_Channels,:No_Features] = weights.data
     '''
-    best_reward = 0.0
     # Define the optimizer that will be utilized by all processes
-    optimizer = optim.Adam(params = model.parameters(), lr = 1e-4)
+    optimizer = optim.Adam(params = model.parameters(), lr = 1e-3)
     for epoch in range(epochs):
         model.train(True)
         # For each epoch start all of the processes to update model
@@ -166,6 +174,4 @@ if __name__ == '__main__':
         # After all of processes are done, evaluate model on test set
         model.eval()
         reward = calculate_reward(model, test_loader, No_Proccess+1)
-        if reward < best_reward:
-            best_reward = reward
-            torch.save(model.state_dict(), 'best_model.pt')
+        torch.save(model.state_dict(), 'model.pt')
