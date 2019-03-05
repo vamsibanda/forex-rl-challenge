@@ -26,7 +26,7 @@ torch.backends.cudnn.benchmark = False
 os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 # Import pickled data required for the training and testing
-with open('weights.pkl', 'rb') as f: weights = cPickle.load(f)
+#with open('weights.pkl', 'rb') as f: weights = cPickle.load(f)
 with open('y_train.pkl', 'rb') as f: y_train = cPickle.load(f)
 with open('y_test.pkl', 'rb') as f: y_test = cPickle.load(f)
 y_train = torch.from_numpy(y_train)
