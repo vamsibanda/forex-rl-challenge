@@ -89,7 +89,7 @@ def plot_function(epoch_weights):
 
 # Go through assigned batches for each process to calculate
 # the reward that occurs from agent's portfolio decisions
-def calculate_reward(model, loader, index, risk = True, skip = None):
+def calculate_reward(model, loader, index, risk = True, q = 1.0, skip = None):
     epoch_weights = []
     #pb = tq(loader, position = index)
     dd = None
@@ -123,7 +123,7 @@ def calculate_reward(model, loader, index, risk = True, skip = None):
         # Future-work: risk-sensitive rl using exponential utility
         total_reward = total_reward + (reward.abs() if risk else reward)
         if reward > 0:
-            pos_reward = pos_reward + reward
+            pos_reward = pos_reward + reward**q
             pos_count += 1
         # Save the current action to employ it for the next step
         last_action = weights
@@ -134,7 +134,7 @@ def calculate_reward(model, loader, index, risk = True, skip = None):
     # Calculate the average reward for the non-skipped batches
     skipped = 0 if skip is None else sum(skip)
     total_reward = total_reward / (len(loader) - skipped)
-    pos_reward = pos_reward / pos_count
+    pos_reward = pos_reward.pow(1/q) / pos_count
     if skip is None: plot_function(epoch_weights)
     return total_reward, pos_reward
 
