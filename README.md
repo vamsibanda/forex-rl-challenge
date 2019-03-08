@@ -4,7 +4,7 @@ This repository contains an open challenge for a Portfolio Balancing AI in Forex
 
 The state of the FX market is represented via 512 features in X_train and X_test.
 
-These 512 features summarizes the price-actions of 10+1 assets in past 20 days.
+These 512 features summarizes the price-actions of 10+1 assets in past 10 days.
 
 Hourly log returns of assets during train & test periods are in y_train and y_test.
 
