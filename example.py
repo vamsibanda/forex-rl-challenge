@@ -26,6 +26,8 @@ torch.backends.cudnn.benchmark = False
 os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 # Import pickled data required for the training and testing
+#X_train -> contains an observation of the environment, which consists of 512 features, at each round.
+#y_train -> contains log returns returns of each asset within the portfolio at the end of each round
 #with open('weights.pkl', 'rb') as f: weights = cPickle.load(f)
 with open('y_train.pkl', 'rb') as f: y_train = cPickle.load(f)
 with open('y_test.pkl', 'rb') as f: y_test = cPickle.load(f)
