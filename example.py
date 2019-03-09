@@ -147,6 +147,11 @@ def calculate_reward(model, loader, index, risk, skip = None):
     if skip is None: plot_function(epoch_weights)
     return total_reward, pos_reward
 
+'''
+Reward at each time step, is the sum of element-wise multiplication of 
+portfolio weights and asset returns (minus the transaction cost, which
+is the absolute sum of portfolio weight differences times the commission.
+'''
 def train(model, optimizer, index, risk = 1.0):
     # Risk-sensitivity disabled if the risk factor is less than 1.0
     if risk < 1.0: risk = 0.0
