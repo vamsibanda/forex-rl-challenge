@@ -91,6 +91,13 @@ def plot_function(epoch_weights):
 
 # Go through assigned batches for each process to calculate
 # the reward that occurs from agent's portfolio decisions
+'''
+Action is a vector which consists of the distribution of portolio weights to the assets, 
+and the leverage up to 2x. Since that we have a long-short portfolio, the absolute sum of
+the portfolio weights should sum to one (If it was a long-only portfolio, it would have
+only positive values which would sum to one). That's why we first give the model output 
+to the tanh and then normalize the resulting vector with the sum of its absolute values.
+'''
 def calculate_reward(model, loader, index, risk, skip = None):
     epoch_weights = []
     #pb = tq(loader, position = index)
