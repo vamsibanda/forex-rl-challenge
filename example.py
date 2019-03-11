@@ -98,7 +98,7 @@ the portfolio weights should sum to one (If it was a long-only portfolio, it wou
 only positive values which would sum to one). That's why we first give the model output 
 to the tanh and then normalize the resulting vector with the sum of its absolute values.
 '''
-def calculate_reward(model, loader, index, risk, skip = None):
+def calculate_reward(model, loader, index, risk = 1.0, skip = None):
     epoch_weights = []
     #pb = tq(loader, position = index)
     dd = None
