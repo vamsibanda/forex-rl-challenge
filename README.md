@@ -45,7 +45,7 @@ Value at Risk: -0.75%
 ![](annual_return.png)
 # Weekly Portfolio Log Return
 ![](weekly_return.png)
-# QC Live Trading Results
+# QC Live Trading Results!!!
 ![](live_trading.png)
 
 # How you can get rich out of this?
