@@ -22,14 +22,14 @@ risk measures including (but not limited to) the Calmar, Sortino, Omega ratio(s)
 # Test results that I have obtained myself:
 Why use my features as environment summary? because they're performing well! 
 
-Max. Drawdown: 2.56% 
-Sortino Ratio: 13.65x
+Max. Drawdown: 4.94% 
+Sortino Ratio: 8.72x
 
-Sharpe Ratio: 3.99x 
-Stability: 96.35% 
+Sharpe Ratio: 3.10x 
+Stability: 94.78% 
 
-Tail Ratio: 2.99x 
-Value at Risk: -0.52%
+Tail Ratio: 2.78x 
+Value at Risk: -0.75%
 
 # Annual Cumulative Return
 ![](annual_return.png)
