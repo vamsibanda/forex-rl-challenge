@@ -20,14 +20,14 @@ I will list results from challengers here by sorting them using the industry-sta
 risk measures including (but not limited to) the Calmar, Sortino, Omega ratio(s), etc.
 
 # Test results of example.py available here:
-Max. Drawdown: 3.36% 
-Sortino Ratio: 5.21x
+Max. Drawdown: 4.29% 
+Sortino Ratio: 5.74x
 
-Sharpe Ratio: 2.44x 
-Stability: 95.58% 
+Sharpe Ratio: 2.59x 
+Stability: 95.75% 
 
-Tail Ratio: 2.60x 
-Value at Risk: -0.64%
+Tail Ratio: 2.18x 
+Value at Risk: -0.71%
 
 # Test results that I have obtained myself:
 Why use my features as environment summary? because they're performing well! 
