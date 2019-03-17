@@ -49,7 +49,7 @@ No_Channels = 11
 No_Proccess = 8
 epochs = 100
 # Transaction cost that is utilized for commission expenses
-cost = 1e-4
+cost = 0.00025
 
 # Function for calculating risk-measures and plotting results
 def plot_function(epoch_weights):
