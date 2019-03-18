@@ -129,15 +129,17 @@ def calculate_reward(model, loader, index, risk = 1.0, skip = None):
         reward -= (weights * rewards).sum() #- rewards.abs().mean()
         # Calculate portfolio return relative to the last weights
         reward += (last_action * rewards).sum()
+        # Save the current action to employ it for the next step
+        last_action = weights
+        # Save the action history to measure and plot afterwards
+        epoch_weights.append(weights.detach().cpu().numpy())
+        # Do not sum the reward concluded from the first action
+        if len(epoch_weights) == 1: continue
         # Future-work: risk-sensitive rl using exponential utility
         total_reward = total_reward + (reward.abs() if risk else reward)
         if reward > 0:
             pos_reward = pos_reward + reward**risk
             pos_count += 1
-        # Save the current action to employ it for the next step
-        last_action = weights
-        # Save the action history to measure and plot afterwards
-        epoch_weights.append(weights.detach().cpu().numpy())
         torch.cuda.empty_cache()
     #pb.set_postfix({'R': '{:.6f}'.format(total_reward)})
     # Calculate the average reward for the non-skipped batches
