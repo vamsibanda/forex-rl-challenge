@@ -170,7 +170,7 @@ def train(model, optimizer, index, risk = 1.0):
 
 if __name__ == '__main__':
     # A simple linear layer is employed as an example model for you
-    model = nn.Linear(No_Features + No_Channels, No_Channels+1, bias = False).cuda().share_memory()
+    model = nn.Linear(No_Features + No_Channels, No_Channels+1).cuda().share_memory()
     '''
     model.weight.data.fill_(0)
     weights = torch.from_numpy(weights)[:No_Channels, :]
