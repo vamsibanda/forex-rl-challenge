@@ -8,9 +8,11 @@ These 512 features summarizes the price-actions of 10+1 assets in past 10 days.
 
 Hourly log returns of assets during train & test periods are in y_train and y_test.
 
-**example.py** contains an implementation, which balances a long-short portfolio.
+Why use my features as environment summary? because they're performing well!
 
 # Participation into the Forex RL Challenge
+**example.py** contains an implementation, which balances a long-short portfolio.
+
 Up to 2x leverage is allowed. Your objective is to outperform following risk metrics.
 
 Please send me your saved model so that I can test it on a blind set for the contest.
@@ -30,8 +32,6 @@ Tail Ratio: 2.17x
 Value at Risk: -0.47%
 
 # Test results that I have obtained myself:
-Why use my features as environment summary? because they're performing well! 
-
 Max. Drawdown: 4.94% 
 Sortino Ratio: 8.72x
 
