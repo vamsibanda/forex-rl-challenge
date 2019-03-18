@@ -22,14 +22,14 @@ I will list results from challengers here by sorting them using the industry-sta
 risk measures including (but not limited to) the Calmar, Sortino, Omega ratio(s), etc.
 
 # Test results of example.py available here:
-Max. Drawdown: 2.79% 
-Sortino Ratio: 6.12x
+Max. Drawdown: 2.81% 
+Sortino Ratio: 6.91x
 
-Sharpe Ratio: 2.64x 
-Stability: 93.28% 
+Sharpe Ratio: 2.62x 
+Stability: 93.31% 
 
-Tail Ratio: 2.17x 
-Value at Risk: -0.47%
+Tail Ratio: 1.85x 
+Value at Risk: -0.55%
 
 # Test results that I have obtained myself:
 Max. Drawdown: 4.94% 
