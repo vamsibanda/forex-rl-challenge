@@ -11,7 +11,7 @@ Hourly log returns of assets during train & test periods are in y_train and y_te
 Why use my features as environment summary? because they're performing well!
 
 # Participation into the Forex RL Challenge
-**example.py** contains an implementation, which balances a long-short portfolio.
+**example.py** contains an implementation, which balances a long-short FX portfolio.
 
 Up to 2x leverage is allowed. Your objective is to outperform following risk metrics.
 
