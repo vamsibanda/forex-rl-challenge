@@ -177,7 +177,7 @@ if __name__ == '__main__':
     model.weight.data[:No_Channels,:No_Features] = weights.data
     '''
     # Define the optimizer that will be utilized by all processes
-    optimizer = optim.Adam(params = model.parameters(), lr = 1e-3)
+    optimizer = optim.Adam(params = model.parameters(), lr = 1e-3, eps = 5e-3, weight_decay = 1e-5)
     for epoch in range(epochs):
         model.train(True)
         # For each epoch start all of the processes to update model
