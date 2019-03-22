@@ -58,6 +58,7 @@ def plot_function(epoch_weights):
     ret = np.sum(np.multiply(ew, y_test.numpy()), axis=1)[1:]
     ind = pd.date_range("20180101", periods=len(ret), freq='H')
     ret = pd.DataFrame(ret - comm * cost, index = ind)
+    ret.to_csv('hourly_returns.csv')
     exp = np.exp(ret.resample('1D').sum()) - 1.0
     ggg = 'Drawdown:', emp.max_drawdown(exp).values[0], 'Sharpe:', emp.sharpe_ratio(exp)[0], \
     'Sortino:', emp.sortino_ratio(exp).values[0], 'Stability:', emp.stability_of_timeseries(exp), \
