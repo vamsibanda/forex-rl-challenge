@@ -78,6 +78,7 @@ def plot_function(epoch_weights):
     plt.savefig('weekly_returns')
     plt.close()
     ew_df = pd.DataFrame(ew)
+    ew_df.to_csv('portfolio_weights.csv')
     plt.figure(figsize=(48, 12))
     ax = sns.heatmap(ew_df.T, cmap=cmap, center=0, xticklabels=False, robust=True)
     ax.text(0.5, 1.0, ttt, horizontalalignment='center', verticalalignment='top', transform=ax.transAxes)
