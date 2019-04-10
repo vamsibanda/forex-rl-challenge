@@ -31,7 +31,7 @@ Stability: 93.31%
 Tail Ratio: 1.85x 
 Value at Risk: -0.55%
 
-Sortino Ratio w/ Post-Training: 8.22x
+Sortino Ratio w/ ARS Post-Training: 8.22x
 
 # Test results that I have obtained myself:
 Max. Drawdown: 4.94% 
