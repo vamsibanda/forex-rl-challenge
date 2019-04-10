@@ -31,6 +31,8 @@ Stability: 93.31%
 Tail Ratio: 1.85x 
 Value at Risk: -0.55%
 
+Sortino Ratio w/ Augmented Random Search: 8.22x
+
 # Test results that I have obtained myself:
 Max. Drawdown: 4.94% 
 Sortino Ratio: 8.72x
@@ -40,6 +42,8 @@ Stability: 94.78%
 
 Tail Ratio: 2.78x 
 Value at Risk: -0.75%
+
+Sortino Ratio w/ Deep Kernel Learning: 9.62x
 
 # Annual Cumulative Return
 ![](annual_return.png)
