@@ -50,6 +50,9 @@ No_Proccess = 8
 epochs = 100
 # Transaction cost that is utilized for commission expenses
 cost = 0.00025
+# Regularization by also predicting the self portolio return
+mse_alpha = 0.75
+l2 = torch.nn.MSELoss()
 
 # Function for calculating risk-measures and plotting results
 def plot_function(epoch_weights):
@@ -107,6 +110,7 @@ def calculate_reward(model, loader, index, risk = 1.0, skip = None):
     last_action = torch.ones(No_Channels).cuda(dd)
     last_action /= float(No_Channels)
     total_reward = 0.0
+    total_mse = 0.0
 
     pos_reward = 0.0
     pos_count = 0
@@ -120,11 +124,13 @@ def calculate_reward(model, loader, index, risk = 1.0, skip = None):
         # Get a new action from the model given current state
         action = model(state)
         # Tanh activation is utilized for long/short portfolio
-        weights = torch.tanh(action[:-1])
+        weights = torch.tanh(action[:-2])
         # Up to 2x leverage is allowed for each action (position)
-        certain = 0.5 + torch.sigmoid(action[-1]) / 2.0
+        certain = 0.5 + torch.sigmoid(action[-2]) / 2.0
         # Absolute portfolio value should sum to one x leverage
         weights = weights / (weights.abs().sum() * certain)
+        # Calculate MSE from predicted return of the portfolio
+        total_mse += l2(action[-1], (weights * rewards).sum())
         # Calculate the transaction cost due to portfolio change
         reward = (weights - last_action).abs().sum() * cost
         # Calculate portfolio return relative to the market itself
@@ -146,10 +152,11 @@ def calculate_reward(model, loader, index, risk = 1.0, skip = None):
     #pb.set_postfix({'R': '{:.6f}'.format(total_reward)})
     # Calculate the average reward for the non-skipped batches
     skipped = 0 if skip is None else sum(skip)
+    total_mse = total_mse / (len(loader) - skipped)
     total_reward = total_reward / (len(loader) - skipped)
     pos_reward = pos_reward.pow(1/risk) / pos_count
     if skip is None: plot_function(epoch_weights)
-    return total_reward, pos_reward
+    return total_reward, pos_reward, total_mse
 
 '''
 Reward at each time step, is the sum of element-wise multiplication of 
@@ -162,8 +169,9 @@ def train(model, optimizer, index, risk = 1.0):
     # Mark the batches that are going to be skipped in this process
     skip = [(i // (len(train_loader)//No_Proccess)) != index for i in range(len(train_loader))]
     # Calculate the average reward for the batches of this process
-    total_reward, pos_reward = calculate_reward(model, train_loader, index, risk, skip)
+    total_reward, pos_reward, total_mse = calculate_reward(model, train_loader, index, risk, skip)
     train_reward = pos_reward / total_reward if risk else total_reward
+    train_reward = train_reward + total_mse * mse_alpha
     #print('train %f' % -train_reward.item())
     # Perform an optimizer on the shared model with calculated loss
     optimizer.zero_grad()
@@ -174,7 +182,7 @@ def train(model, optimizer, index, risk = 1.0):
 
 if __name__ == '__main__':
     # A simple linear layer is employed as an example model for you
-    model = nn.Linear(No_Features + No_Channels, No_Channels+1).cuda().share_memory()
+    model = nn.Linear(No_Features + No_Channels, No_Channels+2).cuda().share_memory()
     '''
     model.weight.data.fill_(0)
     weights = torch.from_numpy(weights)[:No_Channels, :]
