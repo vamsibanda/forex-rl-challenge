@@ -51,7 +51,7 @@ epochs = 100
 # Transaction cost that is utilized for commission expenses
 cost = 0.00025
 # Regularization by also predicting the self portolio return
-mse_alpha = 0.75
+regularization = 0.75
 l2 = torch.nn.MSELoss()
 
 # Function for calculating risk-measures and plotting results
@@ -171,7 +171,7 @@ def train(model, optimizer, index, risk = 1.0):
     # Calculate the average reward for the batches of this process
     total_reward, pos_reward, total_mse = calculate_reward(model, train_loader, index, risk, skip)
     train_reward = pos_reward / total_reward if risk else total_reward
-    train_reward = train_reward + total_mse * mse_alpha
+    train_reward = train_reward + total_mse * regularization
     #print('train %f' % -train_reward.item())
     # Perform an optimizer on the shared model with calculated loss
     optimizer.zero_grad()
