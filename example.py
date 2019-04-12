@@ -51,7 +51,7 @@ epochs = 100
 # Transaction cost that is utilized for commission expenses
 cost = 0.00025
 # Regularization by also predicting the self portolio return
-regularization = 0.75
+regularization = 0.0
 l2 = torch.nn.MSELoss()
 
 # Function for calculating risk-measures and plotting results
