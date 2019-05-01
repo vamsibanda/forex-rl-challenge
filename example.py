@@ -22,7 +22,7 @@ mp = _mp.get_context('spawn')
 torch.manual_seed(0)
 torch.cuda.manual_seed(0)
 torch.backends.cudnn.deterministic = True
-torch.backends.cudnn.benchmark = False
+torch.backends.cudnn.benchmark = True
 os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 # Import pickled data required for the training and testing
@@ -180,6 +180,8 @@ def train(model, optimizer, index, risk = 1.0):
     optimizer.step()
     torch.cuda.empty_cache()
 
+best_reward = 1.0
+
 if __name__ == '__main__':
     # A simple linear layer is employed as an example model for you
     model = nn.Linear(No_Features + No_Channels, No_Channels+2).cuda().share_memory()
@@ -202,5 +204,18 @@ if __name__ == '__main__':
         for p in processes: p.join()
         # After all of processes are done, evaluate model on test set
         model.eval()
-        reward = calculate_reward(model, test_loader, No_Proccess+1)
+
+        total_reward, pos_reward, _ = calculate_reward(model, test_loader, No_Proccess+1)
+        test_reward = pos_reward / total_reward
+
+        if test_reward > best_reward: continue
+        best_reward = test_reward
+
+        '''
+        lin_weights = model.weight.data.detach().cpu().numpy()
+        with open('weights.pkl', 'wb') as f:
+            cPickle.dump(lin_weights, f)
+        '''
+        # Save best model for participating into the competition
         torch.save(model.state_dict(), 'model.pt')
+
